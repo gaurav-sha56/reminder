@@ -1,6 +1,6 @@
 #This is a reminder app this app will give you reminders for your things
 #keep learning
-# still woring on this not completed yet
+
 
 import openpyxl
 import time
@@ -21,28 +21,28 @@ if __name__=="__main__":
 
 
     for i in range(1,row+1):   # list of tasks 
-        cell_obj = sheet_obj.cell(row = i, column = 1)
+        cell_obj = sheet_obj.cell(row = i, column = 1)  # taska to be performed
         cell_obj_time = sheet_obj.cell(row = i, column = 2)
-        # cell_obj_time.value=datetime.strftime("%H:%M:%S")
-        task[cell_obj.value]=cell_obj_time.value
-    print(task)
-         
+        formatted_time = cell_obj_time.value.strftime("%H:%M:%S")  # Format the time as HH:MM:SS)
+        task[cell_obj.value]=formatted_time
+        times.append(formatted_time)
+    
     
 
     condition = True
     while condition:
         c=datetime.now()
         current_time = c.strftime('%H:%M:%S')
-        for i in times:
-            if current_time==i:
+        for val in task:
+            if task[val]==current_time:
 
                 notification.notify(
                     title = "Reminder",
-                    message = "Work",
+                    message = val,
                     timeout = 2 #displaying time
                 )
 
                 time.sleep(5)
-                times.remove(i)
+                times.remove(task[val])
         if times==[]:
             condition = False
