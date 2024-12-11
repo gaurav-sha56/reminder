@@ -20,7 +20,7 @@ if __name__=="__main__":
     col=sheet_obj.max_column
 
 
-    for i in range(1,row+1):   # list of tasks 
+    for i in range(2,row+1):   # list of tasks 
         cell_obj = sheet_obj.cell(row = i, column = 1)  # taska to be performed
         cell_obj_time = sheet_obj.cell(row = i, column = 2)
         formatted_time = cell_obj_time.value.strftime("%H:%M:%S")  # Format the time as HH:MM:SS)
